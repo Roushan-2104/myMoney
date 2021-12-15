@@ -4,6 +4,7 @@ import {projectFirestore} from '../config/config'
 export const useCollection = (collection, _query,_orderBy) => {
     const [documents, setDocuments] = useState(null)
     const [error, setError] = useState(null)
+    const [isPending, setIsPending] = useState(true)
 
     const query = useRef(_query).current
     const orderBy = useRef(_orderBy).current
@@ -28,13 +29,15 @@ export const useCollection = (collection, _query,_orderBy) => {
             })
             setDocuments(results)
             setError(null)
+            setIsPending(false)
         }, (error) => {
             console.log(error)
             setError('Could Not Fetch Data')
+            setIsPending(false)
         })
         return () => unsub()
         
     }, [collection, query, orderBy])
 
-    return {documents,error}
+    return {documents,error,isPending}
 }

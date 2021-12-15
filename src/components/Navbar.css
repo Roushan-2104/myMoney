@@ -1,0 +1,26 @@
+.container-fluid{
+    display: flex;
+    margin: 0 auto;
+    max-width: 960px;
+    align-items: center;
+}
+.navbar-brand{
+    margin-right: auto;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 1.2em;
+}
+.navbar-collapse{
+    margin-left: 351px;
+}
+.loginout{
+    margin-left: 200px;
+}
+@media only screen and (max-width: 991px) {
+    .navbar-collapse{
+        margin-left: 0px;
+    }
+    .loginout{
+        margin-left: 0px;
+    }
+}

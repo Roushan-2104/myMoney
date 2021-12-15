@@ -1,5 +1,5 @@
 import { useAuthContext } from '../../hooks/useAuthContext'
-import styles from './Home.module.css'
+import './Home.css'
 import TransactionForm from './TransactionForm'
 import { useCollection } from '../../hooks/useCollection'
 import TransactionList from './TransactionList'
@@ -7,19 +7,24 @@ import TransactionList from './TransactionList'
 export default function Home() {
     const { user } = useAuthContext()
 
-    const {documents,error} = useCollection(
+    const {documents,error,isPending} = useCollection(
         'transactions',
         ['uid','==',user.uid],
-        ['createdAt']
+        ['createdAt','desc']
         )
     
     return (
-        <div className={styles.container}>
-            <div className={styles.content}>
-                {error && <p>{error}</p>}
-                {documents && <TransactionList documents={documents}/>}
+        <div className="container">
+            <div className="sidebar d-md-block d-lg-none">
+                <TransactionForm uid={user.uid}/>
             </div>
-            <div className={styles.sidebar}>
+            <div className="content">
+                {error && <p>{error}</p>}
+                {isPending && <p className='fs-3 text-center text-dark'><em>Loading....</em></p>}
+                {documents && <TransactionList documents={documents}/>}
+                
+            </div>
+            <div className="sidebar d-lg-block d-none">
                 <TransactionForm uid={user.uid}/>
             </div>
         </div>

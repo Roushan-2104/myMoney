@@ -1,7 +1,7 @@
 .container {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  max-width: 960px;
+  max-width: 1000px;
   margin: 60px auto;
 }
 .content {
@@ -89,4 +89,24 @@
   line-height: 0;
   font-size: 0.9em;
   cursor: pointer;
+}
+@media only screen and (max-width: 991px) {
+  .container{
+    grid-template-columns: 1fr;
+  }
+  .sidebar{
+    padding-left: 0px;
+  }
+  .content{
+    padding-right: 0px;
+  }
+  h3{
+    text-align: center;
+  }
+  .transactions .amount{
+    margin-right: 10px;
+  }
+  .transactions li{
+    padding-left: 15px;
+  }
 }
